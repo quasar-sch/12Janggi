@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>십이장기</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 1. 메인 -->
+<section id="screen-main" class="screen active">
+  <div class="paper-card center">
+    <div class="title-hanja">十二將棋</div>
+    <h1 class="title">십이장기</h1>
+    <p class="subtitle">가로 3칸 · 세로 4칸, 작지만 깊은 장기</p>
+    <div class="deco" id="deco"></div>
+    <div class="btn-col">
+      <button class="btn primary big" id="btnToSettings">게임 시작</button>
+      <button class="btn big" id="btnMainHelp">규칙 보기</button>
+    </div>
+    <div class="tip" id="tip-main">
+      <div class="tip-head"><span class="tip-label">작전 팁</span><button class="link" data-tip-next="main">다른 팁 보기</button></div>
+      <div class="tip-title"></div>
+      <p class="tip-text"></p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. 설정 -->
+<section id="screen-settings" class="screen">
+  <div class="paper-card">
+    <h2 class="h2">게임 설정</h2>
+
+    <div class="opt-row">
+      <div class="opt-label">게임 방식</div>
+      <div class="opt-group" data-key="mode">
+        <button data-val="ai">컴퓨터와 대결</button>
+        <button data-val="pvp">2명이 함께</button>
+      </div>
+    </div>
+
+    <div class="opt-row ai-only">
+      <div class="opt-label">컴퓨터 난이도</div>
+      <div class="opt-group" data-key="level">
+        <button data-val="easy">쉬움</button>
+        <button data-val="normal">보통</button>
+        <button data-val="hard">어려움</button>
+      </div>
+      <div class="opt-desc" id="levelDesc"></div>
+    </div>
+
+    <div class="opt-row">
+      <div class="opt-label">먼저 두는 쪽</div>
+      <div class="opt-group" data-key="first">
+        <button data-val="p0" id="firstP0"></button>
+        <button data-val="p1" id="firstP1"></button>
+        <button data-val="random">랜덤</button>
+      </div>
+    </div>
+
+    <div class="opt-row">
+      <div class="opt-label">도움 기능</div>
+      <label class="toggle"><input type="checkbox" id="optWarn"><span>왕 위험 경고 (왕이 잡힐 수 있을 때 알려줘요)</span></label>
+      <label class="toggle"><input type="checkbox" id="optDirs"><span>말에 이동 방향 점 표시</span></label>
+      <label class="toggle pvp-only"><input type="checkbox" id="optFlip"><span>위쪽 말 글자 뒤집기 (마주 앉아서 할 때)</span></label>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btnSetBack">뒤로</button>
+      <button class="btn primary" id="btnStart">게임 시작</button>
+    </div>
+
+    <div class="tip" id="tip-settings">
+      <div class="tip-head"><span class="tip-label">작전 팁</span><button class="link" data-tip-next="settings">다른 팁 보기</button></div>
+      <div class="tip-title"></div>
+      <p class="tip-text"></p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 게임 -->
+<section id="screen-game" class="screen">
+  <div class="game-layout">
+    <aside class="panel">
+      <div class="panel-title">十二將棋</div>
+      <div id="turnChip" class="turn-chip"></div>
+      <div id="msgBox"></div>
+      <div class="btn-grid">
+        <button class="btn" id="btnUndo">되돌리기</button>
+        <button class="btn" id="btnRestart">새 게임</button>
+        <button class="btn" id="btnGameSettings">설정</button>
+        <button class="btn" id="btnGameMain">메인</button>
+        <button class="btn" id="btnGameHelp">규칙</button>
+      </div>
+      <div class="info" id="info"></div>
+    </aside>
+
+    <div class="table">
+      <div class="tray-wrap">
+        <div class="tray-label" id="lbl1"></div>
+        <div class="tray" id="tray1"></div>
+      </div>
+      <div class="board" id="board"></div>
+      <div class="tray-wrap">
+        <div class="tray" id="tray0"></div>
+        <div class="tray-label" id="lbl0"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 결과 -->
+<div id="overlay" class="overlay hidden">
+  <div class="paper-card center modal">
+    <h2 class="h2" id="resTitle"></h2>
+    <p id="resText" class="res-text"></p>
+    <div class="btn-row">
+      <button class="btn primary" id="resAgain">다시 하기</button>
+      <button class="btn" id="resView">판 보기</button>
+      <button class="btn" id="resSettings">설정으로</button>
+      <button class="btn" id="resMain">메인으로</button>
+    </div>
+  </div>
+</div>
+
+<!-- 규칙 -->
+<div id="helpModal" class="overlay hidden">
+  <div class="paper-card modal help">
+    <h2 class="h2">십이장기 규칙</h2>
+    <div id="helpPieces" class="help-pieces"></div>
+    <ul class="help-list">
+      <li>판은 가로 3칸, 세로 4칸이에요. 내 앞쪽 한 줄이 내 진영이에요.</li>
+      <li>말에 찍힌 점이 그 말이 움직일 수 있는 방향이에요. 말은 돌아서지 못해요.</li>
+      <li>상대 말을 잡으면 포로가 돼요. 내 차례에 포로를 빈칸에 내려놓을 수 있어요. (상대 진영에는 안 돼요. 내려놓는 것도 한 번의 차례예요.)</li>
+      <li>자(子)가 상대 진영에 들어가면 후(侯)로 변신해요. 후를 잡으면 다시 자가 돼요.</li>
+      <li>상대 왕을 잡으면 이겨요.</li>
+      <li>내 왕이 상대 진영에 들어가서 다음 내 차례까지 잡히지 않고 버티면 이겨요. (말을 잡으면서 들어가도 똑같아요.)</li>
+      <li>같은 판이 3번 나오면 무승부예요.</li>
+    </ul>
+    <div class="btn-row"><button class="btn primary" id="helpClose">닫기</button></div>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+/* ===== 십이장기 : 양피지 테마 ===== */
+:root{
+  --paper:#f1e1b6;
+  --paper-2:#e6cf98;
+  --paper-3:#faf0d3;
+  --ink:#3b2a16;
+  --ink-soft:#7a6444;
+  --gold:#b5832a;
+  --gold-2:#d8b04e;
+  --red:#a3261c;
+  --blue:#243a58;
+  --green:#2f6b3a;
+  --cell:max(56px, min(26vw, calc((100vh - 300px) / 5.4), 118px));
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{
+  font-family:"Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(ellipse at 15% 10%, #f9edca 0, transparent 55%),
+    radial-gradient(ellipse at 90% 95%, #d9bd84 0, transparent 50%),
+    var(--paper);
+  min-height:100vh;
+}
+button{font-family:inherit}
+
+/* 화면 */
+.screen{display:none;min-height:100vh;padding:20px;align-items:center;justify-content:center}
+.screen.active{display:flex}
+
+/* 양피지 카드 */
+.paper-card{
+  background:var(--paper-3);
+  border:3px double var(--gold);
+  border-radius:14px;
+  padding:24px;
+  width:100%;
+  max-width:560px;
+}
+.paper-card.center{text-align:center}
+
+.title-hanja{font-family:"Noto Serif KR","Batang","Songti SC",serif;font-size:20px;letter-spacing:.5em;color:var(--gold);margin-bottom:4px}
+.title{font-family:"Noto Serif KR","Batang",serif;font-size:56px;margin:0;color:var(--red);letter-spacing:.1em}
+.subtitle{margin:6px 0 16px;color:var(--ink-soft)}
+.h2{font-family:"Noto Serif KR","Batang",serif;margin:0 0 14px;color:var(--red);font-size:26px}
+.deco{display:flex;justify-content:center;gap:6px;margin:6px 0 18px}
+.deco svg{width:64px;height:64px}
+
+/* 버튼 */
+.btn{
+  background:var(--paper-3);
+  color:var(--ink);
+  border:2px solid var(--gold);
+  border-radius:8px;
+  padding:10px 16px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+}
+.btn:hover:not(:disabled){background:var(--paper-2)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--red);border-color:#7b1810;color:#fff7e0}
+.btn.primary:hover:not(:disabled){background:#8b1f16}
+.btn.big{font-size:20px;padding:14px 20px}
+.btn-col{display:flex;flex-direction:column;gap:10px;max-width:320px;margin:0 auto 18px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.btn-grid .btn{padding:8px 10px;font-size:15px}
+.link{background:none;border:none;color:var(--red);text-decoration:underline;cursor:pointer;font-size:14px;padding:0}
+
+/* 팁 */
+.tip{margin-top:20px;padding:12px 14px;border-left:5px solid var(--gold);background:var(--paper);text-align:left;border-radius:6px}
+.tip-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.tip-label{font-size:12px;font-weight:800;color:#fff7e0;background:var(--gold);padding:2px 8px;border-radius:4px}
+.tip-title{font-weight:800;color:var(--red);margin-bottom:2px}
+.tip-text{margin:0;line-height:1.6;font-size:15px}
+
+/* 설정 */
+.opt-row{margin-bottom:16px}
+.opt-label{font-weight:800;margin-bottom:6px}
+.opt-group{display:flex;gap:6px;flex-wrap:wrap}
+.opt-group button{
+  flex:1 1 0;min-width:90px;
+  padding:10px 8px;font-size:15px;font-weight:700;
+  background:var(--paper);border:2px solid var(--paper-2);color:var(--ink);
+  border-radius:8px;cursor:pointer;
+}
+.opt-group button.on{background:var(--red);border-color:#7b1810;color:#fff7e0}
+.opt-desc{margin-top:6px;font-size:13px;color:var(--ink-soft)}
+.toggle{display:flex;align-items:center;gap:8px;margin:6px 0;cursor:pointer;font-size:15px}
+.toggle input{width:20px;height:20px;accent-color:var(--red)}
+.hidden{display:none!important}
+
+/* 게임 레이아웃 */
+#screen-game{align-items:flex-start;padding:12px}
+.game-layout{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;align-items:flex-start;width:100%}
+.panel{
+  width:100%;max-width:300px;
+  background:var(--paper-3);border:3px double var(--gold);border-radius:12px;padding:14px;
+}
+.panel-title{font-family:"Noto Serif KR","Batang",serif;letter-spacing:.4em;color:var(--gold);text-align:center;font-size:14px;margin-bottom:8px}
+.turn-chip{text-align:center;font-weight:800;font-size:20px;padding:8px;border-radius:8px;border:2px solid var(--ink-soft);background:var(--paper)}
+.turn-chip.p0{border-color:var(--red);color:var(--red)}
+.turn-chip.p1{border-color:var(--blue);color:var(--blue)}
+.turn-chip.end{border-color:var(--gold);color:var(--ink)}
+#msgBox{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.msg{padding:8px 10px;border-radius:6px;font-size:14px;line-height:1.5;background:var(--paper);border:1px solid var(--paper-2)}
+.msg.danger{background:#f6d3cb;border-color:var(--red);color:#6d130c;font-weight:700}
+.msg.good{background:#dfe8c8;border-color:var(--green);color:#25512d;font-weight:700}
+.msg.hint{color:var(--ink-soft)}
+.info{margin-top:10px;font-size:13px;color:var(--ink-soft);text-align:center}
+
+.table{display:flex;flex-direction:column;align-items:center;gap:8px}
+.tray-wrap{width:calc(var(--cell) * 3 + 8px)}
+.tray-label{font-size:13px;font-weight:700;color:var(--ink-soft);margin:2px 2px}
+.tray{
+  min-height:calc(var(--cell) * .66 + 12px);
+  display:flex;flex-wrap:wrap;gap:4px;align-items:center;
+  padding:5px 6px;
+  border:2px dashed var(--gold);border-radius:10px;background:rgba(250,240,211,.6);
+}
+.tray .empty{font-size:13px;color:var(--ink-soft);padding-left:4px}
+.hand-piece{width:calc(var(--cell) * .6);height:calc(var(--cell) * .6);border-radius:8px;padding:0}
+.hand-piece svg{width:100%;height:100%;display:block}
+.hand-piece.ready{cursor:pointer}
+.hand-piece.ready:hover{background:rgba(216,176,78,.3)}
+.hand-piece.selected{background:rgba(216,176,78,.55);outline:3px solid var(--gold-2)}
+
+/* 판 */
+.board{
+  display:grid;
+  grid-template-columns:repeat(3,var(--cell));
+  grid-template-rows:repeat(4,var(--cell));
+  border:4px solid var(--ink);
+  border-radius:4px;
+  background:var(--paper-3);
+}
+.cell{
+  position:relative;
+  border:1px solid var(--ink-soft);
+  display:flex;align-items:center;justify-content:center;
+  cursor:default;
+  user-select:none;
+}
+.cell.home0{background:rgba(163,38,28,.13)}
+.cell.home1{background:rgba(36,58,88,.14)}
+.cell .zone{position:absolute;left:4px;top:2px;font-size:11px;font-weight:700;color:var(--ink-soft);pointer-events:none}
+.cell .pc{width:88%;height:88%}
+.cell .pc svg{width:100%;height:100%;display:block}
+.cell.clickable{cursor:pointer}
+.cell.last{box-shadow:inset 0 0 0 3px rgba(181,131,42,.6)}
+.cell.selected{background:rgba(216,176,78,.45);outline:4px solid var(--gold-2);outline-offset:-4px}
+.cell.target::after{
+  content:"";position:absolute;width:26%;height:26%;border-radius:50%;
+  background:rgba(47,107,58,.8);pointer-events:none;
+}
+.cell.capture::after{
+  content:"";position:absolute;inset:5%;border:4px solid var(--red);border-radius:10px;pointer-events:none;
+}
+.cell.danger{animation:danger 1s ease-in-out infinite}
+@keyframes danger{0%,100%{background-color:rgba(163,38,28,.15)}50%{background-color:rgba(163,38,28,.55)}}
+
+/* 말 */
+.pcsvg .body{fill:#fbf1d4;stroke:var(--pc);stroke-width:4;stroke-linejoin:round}
+.pcsvg.p0{--pc:var(--red)}
+.pcsvg.p1{--pc:var(--blue)}
+.pcsvg.hu .body{fill:#f2d37a}
+.pcsvg .dot{fill:var(--pc)}
+.pcsvg .hanja{font-family:"Noto Serif KR","Batang","Songti SC",serif;font-size:36px;font-weight:700;fill:var(--pc);text-anchor:middle;dominant-baseline:central}
+.pcsvg .hangul{font-size:14px;font-weight:800;fill:var(--pc);text-anchor:middle;dominant-baseline:central}
+
+/* 오버레이 */
+.overlay{
+  position:fixed;inset:0;background:rgba(59,42,22,.55);
+  display:flex;align-items:center;justify-content:center;padding:16px;z-index:10;
+}
+.modal{max-height:92vh;overflow:auto}
+.res-text{font-size:18px;line-height:1.6;margin:0}
+.help{text-align:left}
+.help-pieces{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin-bottom:10px}
+.help-piece{display:flex;gap:8px;align-items:center;font-size:14px;line-height:1.4}
+.help-piece svg{width:52px;height:52px;flex:none}
+.help-list{padding-left:20px;line-height:1.7;font-size:15px;margin:0}
+
+@media (max-width:520px){
+  .title{font-size:44px}
+  .help-pieces{grid-template-columns:1fr}
+  .panel{max-width:none}
+}
