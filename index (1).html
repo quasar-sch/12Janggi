@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>십이장기</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- 메인 -->
+  <section id="screen-main" class="screen">
+    <div class="panel">
+      <div class="logo-sub">朝鮮 小將棋</div>
+      <h1 class="logo">十二將棋</h1>
+      <p class="logo-kr">십이장기</p>
+      <div class="rule-line"></div>
+      <div class="btn-col">
+        <button id="btn-main-start" class="btn big">시작하기</button>
+        <button id="btn-main-rules" class="btn ghost">규칙 보기</button>
+      </div>
+      <div class="tip-box">
+        <div class="tip-title">오늘의 작전</div>
+        <p id="tip-main" class="tip-text"></p>
+        <button id="btn-tip-main" class="link-btn">다른 작전 보기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 설정 -->
+  <section id="screen-setup" class="screen" hidden>
+    <div class="panel wide">
+      <h2 class="h2">대국 설정</h2>
+      <div class="rule-line"></div>
+      <div class="set-row">
+        <div class="set-label">게임 방식</div>
+        <div id="opt-mode" class="opt-group"></div>
+      </div>
+      <div id="row-diff" class="set-row">
+        <div class="set-label">컴퓨터 실력</div>
+        <div id="opt-diff" class="opt-group"></div>
+      </div>
+      <div class="set-row">
+        <div class="set-label">먼저 두는 쪽</div>
+        <div id="opt-first" class="opt-group"></div>
+      </div>
+      <div class="set-row">
+        <div class="set-label">도움 기능</div>
+        <div id="opt-help" class="opt-group"></div>
+      </div>
+      <div class="btn-row">
+        <button id="btn-setup-back" class="btn ghost">메인으로</button>
+        <button id="btn-setup-start" class="btn big">대국 시작</button>
+      </div>
+      <div class="tip-box">
+        <div class="tip-title">작전 한 수</div>
+        <p id="tip-setup" class="tip-text"></p>
+        <button id="btn-tip-setup" class="link-btn">다른 작전 보기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 게임 -->
+  <section id="screen-game" class="screen game" hidden>
+    <div class="corner left">
+      <button id="btn-g-main" class="mini" title="메인 화면">메인</button>
+      <button id="btn-g-setup" class="mini" title="설정">설정</button>
+    </div>
+    <div class="corner right">
+      <button id="btn-g-undo" class="mini" title="한 수 무르기">무르기</button>
+      <button id="btn-g-new" class="mini" title="새 게임">새 게임</button>
+      <button id="btn-g-rules" class="mini" title="규칙">규칙</button>
+    </div>
+    <div class="stage">
+      <div id="banner" class="banner">
+        <div id="banner-main" class="banner-main"></div>
+        <div id="banner-sub" class="banner-sub"></div>
+        <button id="btn-show-result" class="link-btn" hidden>결과 다시 보기</button>
+      </div>
+      <div id="hand-top" class="hand top"></div>
+      <div class="board-frame">
+        <div id="board" class="board"></div>
+      </div>
+      <div id="hand-bottom" class="hand bottom"></div>
+    </div>
+  </section>
+
+  <!-- 규칙 창 -->
+  <div id="modal-rules" class="modal" hidden>
+    <div class="modal-card">
+      <h2 class="h2">십이장기 규칙</h2>
+      <div class="rule-line"></div>
+      <div id="rules-body" class="rules-body"></div>
+      <div class="btn-row">
+        <button id="btn-rules-close" class="btn big">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 결과 창 -->
+  <div id="modal-result" class="modal" hidden>
+    <div id="petals" class="petals"></div>
+    <div class="modal-card result">
+      <div id="result-emblem" class="emblem">勝</div>
+      <h2 id="result-title" class="h2"></h2>
+      <p id="result-text" class="result-text"></p>
+      <div class="btn-row">
+        <button id="btn-result-again" class="btn big">다시 하기</button>
+        <button id="btn-result-view" class="btn ghost">판 보기</button>
+        <button id="btn-result-setup" class="btn ghost">설정</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="game.js"></script>
+</body>
+</html>
